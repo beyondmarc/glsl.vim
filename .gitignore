@@ -1,0 +1,5 @@
+# Ignore teporal files, backups, etc...
+.DS_Store
+*~
+*.swp
+
