@@ -331,4 +331,4 @@ if version >= 508 || !exists("did_glsl_syn_inits")
   delcommand HiLink
 endif
 
-let b:current_syntax = "glsl400"
+let b:current_syntax = "glsl430"
