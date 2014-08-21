@@ -218,6 +218,8 @@ syn keyword         glslFunc                textureProjGrad textureProjGradOffse
 syn keyword         glslFunc                dFdx dFdy fwidth interpolateAtCentroid interpolateAtOffset interpolateAtSample 
 syn keyword         glslFunc                noise1 noise2 noise3 noise4
 syn keyword         glslFunc                EmitStreamVertex EndStreamPrimitive EmitVertex EndPrimitive barrier
+syn keyword         glslFunc                imageLoad imageStore
+syn keyword         glslFunc                imageAtomicAdd imageAtomicMin imageAtomicMax imageAtomicAnd imageAtomicOr imageAtomicXor imageAtomicExchange imageAtomicCompSwap
 
 syn keyword         glslFuncDeprec          ftransform
 syn keyword         glslFuncDeprec          texture1D texture1DProj texture1DProj texture1DLod texture1DProjLod texture1DProjLod texture2D 
