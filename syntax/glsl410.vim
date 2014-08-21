@@ -73,7 +73,7 @@ if exists("c_comment_strings")
   syntax region     glslComment2String      contained start=+L\=\\\@<!"+ skip=+\\\\\|\\"+ end=+"+ end="$" contains=glslSpecial
   syntax region     glslCommentL            start="//" skip="\\$" end="$" keepend contains=@glslCommentGroup,glslComment2String,glslCharacter,glslNumbersCom,glslSpaceError
   syntax region     glslComment             matchgroup=glslCommentStart start="/\*" matchgroup=NONE end="\*/" contains=@glslCommentGroup,glslCommentStartError,glslCommentString,glslCharacter,glslNumbersCom,glslSpaceError
-else                                        
+else
   syn region        glslCommentL            start="//" skip="\\$" end="$" keepend contains=@glslCommentGroup,glslSpaceError
   syn region        glslComment             matchgroup=glslCommentStart start="/\*" matchgroup=NONE end="\*/" contains=@glslCommentGroup,glslCommentStartError,glslSpaceError
 endif
@@ -108,7 +108,7 @@ syn match           glslBitField            display "^\s*\I\i*\s*:\s*[1-9]"me=e-
 syn match           glslBitField            display ";\s*\I\i*\s*:\s*[1-9]"me=e-1
 
 
-" Keywords and simple stuff 
+" Keywords and simple stuff
 syn keyword         glslTodo                contained TODO FIXME XXX
 
 syn keyword         glslStorageClass        const uniform
@@ -120,7 +120,7 @@ syn keyword         glslStorageClass        invariant
 syn keyword         glslStorageClass        subroutine
 
 syn match           glslLayout              /\<layout\s*(\_.\{-})/hs=s,he=s+6 contains=glslLayoutQual,glslNumber
-                                            
+
 syn keyword         glslStorageClassDeprec  attribute varying
 
 syn keyword         glslLayoutQual          contained shared packed std140 row_major column_major ccw cw equal_spacing fractional_even_spacing
@@ -132,10 +132,10 @@ syn keyword         glslStatement           break continue discard return
 syn keyword         glslRepeat              while for do
 syn keyword         glslConditional         if else switch
 syn keyword         glslLabel               case default
-                                            
+
 syn keyword         glslConstant            true false
 syn keyword         glslConstant            __LINE__ __FILE__ __VERSION__
-                                            
+
 syn keyword         glslType                uint uvec2 uvec3 uvec4
 syn keyword         glslType                float double int void bool
 syn keyword         glslType                mat2 mat3 mat4 dmat2 dmat3 dmat4
@@ -143,7 +143,7 @@ syn keyword         glslType                mat2x2 mat2x3 mat2x4 dmat2x2 dmat2x3
 syn keyword         glslType                mat3x2 mat3x3 mat3x4 dmat3x2 dmat3x3 dmat3x4
 syn keyword         glslType                mat4x2 mat4x3 mat4x4 dmat4x2 dmat4x3 dmat4x4
 syn keyword         glslType                vec2 vec3 vec4 ivec2 ivec3 ivec4 bvec2 bvec3 bvec4 dvec2 dvec3 dvec4
-syn keyword         glslType                sampler1D sampler2D sampler3D samplerCube 
+syn keyword         glslType                sampler1D sampler2D sampler3D samplerCube
 syn keyword         glslType                sampler1DShadow sampler2DShadow samplerCubeShadow
 syn keyword         glslType                sampler1DArray sampler2DArray
 syn keyword         glslType                sampler1DArrayShadow sampler2DArrayShadow
@@ -156,14 +156,14 @@ syn keyword         glslType                samplerBuffer isamplerBuffer usample
 syn keyword         glslType                sampler2DMS isampler2DMS usampler2DMS
 syn keyword         glslType                sampler2DMSArray isampler2DMSArray usampler2DMSArray
 syn keyword         glslType                samplerCubeArray samplerCubeArrayShadow isamplerCubeArray usamplerCubeArray
-                                            
+
 syn keyword         glslStructure           struct
-                                            
-" Swizzling                                  
+
+" Swizzling
 syn match           glslSwizzle             /\.[xyzw]\{1,4\}\>/
 syn match           glslSwizzle             /\.[rgba]\{1,4\}\>/
 syn match           glslSwizzle             /\.[stpq]\{1,4\}\>/
-                                            
+
 " Builtin variables
 syn keyword         glslState               gl_FragCoord gl_FrontFacing gl_PointCoord gl_SampleID gl_SamplePosition gl_FragDepth
 syn keyword         glslState               gl_VertexID gl_InstanceID gl_Position gl_PointSize
@@ -181,7 +181,7 @@ syn keyword         glslUniform             gl_DepthRange
 syn keyword         glslUniformDeprec       gl_ModelViewMatrix gl_ProjectionMatrix gl_ModelViewProjectionMatrix gl_NormalMatrix gl_NormalScale
 syn keyword         glslUniformDeprec       gl_ModelViewMatrixInverse gl_ProjectionMatrixInverse gl_ModelViewProjectionMatrixInverse
 syn keyword         glslUniformDeprec       gl_ModelViewMatrixTranspose gl_ProjectionMatrixTranspose gl_ModelViewProjectionMatrixTranspose
-syn keyword         glslUniformDeprec       gl_ModelViewMatrixInverseTranspose gl_ProjectionMatrixInverseTranspose gl_ModelViewProjectionMatrixInverseTranspose 
+syn keyword         glslUniformDeprec       gl_ModelViewMatrixInverseTranspose gl_ProjectionMatrixInverseTranspose gl_ModelViewProjectionMatrixInverseTranspose
 syn keyword         glslUniformDeprec       gl_Point gl_FrontMaterial gl_BackMaterial gl_LightModel gl_FrontLightModelProduct gl_BackLightModelProduct gl_Fog
 syn keyword         glslUniformDeprec       gl_BackLightProduct gl_ClipPlane gl_EyePlaneQ gl_EyePlaneR gl_EyePlaneS gl_EyePlaneT
 syn keyword         glslUniformDeprec       gl_FrontLightProduct gl_LightSource gl_ObjectPlaneQ gl_ObjectPlaneR gl_ObjectPlaneS
@@ -201,40 +201,40 @@ syn keyword         glslConstant            gl_MaxTessEvaluationUniformComponent
 syn keyword         glslConstantDeprec      gl_MaxVaryingFloats gl_MaxVaryingComponents
 syn keyword         glslConstantDeprec      gl_MaxTextureUnits gl_MaxTextureCoords gl_MaxClipPlanes
 
-" Built in functions                         
+" Built in functions
 syn keyword         glslFunc                abs acos acosh asin asinh atan atanh ceil cos cosh degrees exp exp2 floor fract inversesqrt log
 syn keyword         glslFunc                log2 max min mod modf pow radians round roundEven sign sin sinh sqrt tan tanh trunc
 syn keyword         glslFunc                clamp cross distance dot floatBitsToInt floatBitsToUint fma frexp intBitsToFloat isinf isnan
 syn keyword         glslFunc                ldexp length mix normalize packDouble2x32 packSnorm4x8 packUnorm2x16 packUnorm4x8 smoothstep step
 syn keyword         glslFunc                uintBitsToFloat unpackDouble2x32 unpackSnorm4x8 unpackUnorm2x16 unpackUnorm4x8
 syn keyword         glslFunc                all any bitCount bitfieldExtract bitfieldInsert bitfieldReverse determinant equal faceforward
-syn keyword         glslFunc                findLSB findMSB greaterThan greaterThanEqual imulExtended inverse lessThan lessThanEqual matrixCompMult 
-syn keyword         glslFunc                not notEqual outerProduct reflect refract transpose uaddCarry umulExtended usubBorrow 
+syn keyword         glslFunc                findLSB findMSB greaterThan greaterThanEqual imulExtended inverse lessThan lessThanEqual matrixCompMult
+syn keyword         glslFunc                not notEqual outerProduct reflect refract transpose uaddCarry umulExtended usubBorrow
 syn keyword         glslFunc                textureSize textureQueryLod texture textureProj textureLod textureOffset texelFetch texelFetchOffset
 syn keyword         glslFunc                textureProjOffset textureLodOffset textureProjLod textureProjLodOffset textureGrad textureGradOffset
 syn keyword         glslFunc                textureProjGrad textureProjGradOffset textureGather textureGatherOffset textureGatherOffsets
-syn keyword         glslFunc                dFdx dFdy fwidth interpolateAtCentroid interpolateAtOffset interpolateAtSample 
+syn keyword         glslFunc                dFdx dFdy fwidth interpolateAtCentroid interpolateAtOffset interpolateAtSample
 syn keyword         glslFunc                noise1 noise2 noise3 noise4
 syn keyword         glslFunc                EmitStreamVertex EndStreamPrimitive EmitVertex EndPrimitive barrier
 
 syn keyword         glslFuncDeprec          ftransform
-syn keyword         glslFuncDeprec          texture1D texture1DProj texture1DProj texture1DLod texture1DProjLod texture1DProjLod texture2D 
-syn keyword         glslFuncDeprec          texture2DProj texture2DProj texture2DLod texture2DProjLod texture2DProjLod texture3D texture3DProj 
-syn keyword         glslFuncDeprec          texture3DLod texture3DProjLod textureCube textureCubeLod shadow1D shadow2D shadow1DProj shadow2DProj 
+syn keyword         glslFuncDeprec          texture1D texture1DProj texture1DProj texture1DLod texture1DProjLod texture1DProjLod texture2D
+syn keyword         glslFuncDeprec          texture2DProj texture2DProj texture2DLod texture2DProjLod texture2DProjLod texture3D texture3DProj
+syn keyword         glslFuncDeprec          texture3DLod texture3DProjLod textureCube textureCubeLod shadow1D shadow2D shadow1DProj shadow2DProj
 syn keyword         glslFuncDeprec          shadow1DLod shadow2DLod shadow1DProjLod shadow2DProjLod
 
 
-" Highlight unsupported keywords             
+" Highlight unsupported keywords
 syn keyword         glslUnsupported         asm
-syn keyword         glslUnsupported         class union enum typedef template this packed 
+syn keyword         glslUnsupported         class union enum typedef template this packed
 syn keyword         glslUnsupported         common partition active
-syn keyword         glslUnsupported         filter 
-syn keyword         glslUnsupported         goto 
+syn keyword         glslUnsupported         filter
+syn keyword         glslUnsupported         goto
 syn keyword         glslUnsupported         hvec2 hvec3 hvec4 fvec2 fvec3 fvec4
-syn keyword         glslUnsupported         iimage1D iimage2D iimage3D iimageCube 
+syn keyword         glslUnsupported         iimage1D iimage2D iimage3D iimageCube
 syn keyword         glslUnsupported         iimage1DArray iimage2DArray uimage1DArray uimage2DArray
-syn keyword         glslUnsupported         image1D image2D image3D imageCube 
-syn keyword         glslUnsupported         image1DArray image2DArray 
+syn keyword         glslUnsupported         image1D image2D image3D imageCube
+syn keyword         glslUnsupported         image1DArray image2DArray
 syn keyword         glslUnsupported         image1DArrayShadow image2DArrayShadow
 syn keyword         glslUnsupported         image1DShadow image2DShadow
 syn keyword         glslUnsupported         imageBuffer iimageBuffer uimageBuffer
@@ -242,9 +242,9 @@ syn keyword         glslUnsupported         inline noinline volatile public stat
 syn keyword         glslUnsupported         input output
 syn keyword         glslUnsupported         long short half fixed unsigned superp
 syn keyword         glslUnsupported         namespace using
-syn keyword         glslUnsupported         sampler3DRect 
+syn keyword         glslUnsupported         sampler3DRect
 syn keyword         glslUnsupported         sizeof cast
-syn keyword         glslUnsupported         uimage1D uimage2D uimage3D uimageCube 
+syn keyword         glslUnsupported         uimage1D uimage2D uimage3D uimageCube
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
