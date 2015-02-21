@@ -24,3 +24,12 @@ variable `glsl_default_version` in your `.vimrc` before loading the plugin:
     let g:glsl_default_version = 'glsl330'
 
 If this variable is not set, it will default to `glsl330`.
+
+### Choosing which file extensions to interpret as GLSL files
+
+To set the list of file extensions for which the syntax is loaded, set the
+global variable `glsl_file_extensions` in your `.vimrc` before loading the plugin:
+
+    let g:glsl_file_extensions = '*.glsl,*.vsh,*.fsh'
+
+If this variable is not set, it will default to `*.glsl,*.vsh,*.fsh`.
