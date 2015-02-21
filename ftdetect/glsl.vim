@@ -2,4 +2,8 @@ if !exists('g:glsl_default_version')
     let g:glsl_default_version = 'glsl330'
 endif
 
-execute 'autocmd BufRead,BufNewFile *.vp,*.fp,*.gp,*.vs,*.fs,*.gs,*.tcs,*.tes,*.cs,*.vert,*.frag,*.geom,*.tess,*.shd,*.gls,*.glsl,*.vsh,*.fsh setfiletype '.g:glsl_default_version
+if !exists('g:glsl_file_extensions')
+    let g:glsl_file_extensions = '*.glsl,*.vsh,*.fsh'
+endif
+
+execute 'autocmd BufRead,BufNewFile '.g:glsl_file_extensions.' setfiletype '.g:glsl_default_version
