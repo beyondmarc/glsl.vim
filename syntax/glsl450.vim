@@ -127,7 +127,8 @@ syn keyword         glslStorageClassDeprec  attribute varying
 
 syn keyword         glslLayoutQual          contained depth_any depth_greater depth_less depth_unchanged
 syn keyword         glslLayoutQual          contained shared packed std140 row_major column_major ccw cw equal_spacing fractional_even_spacing
-syn keyword         glslLayoutQual          contained fractional_odd_spacing index invocations isolines line_strip lines lines_adjacency location
+syn keyword         glslLayoutQual          contained fractional_odd_spacing index invocations isolines line_strip lines lines_adjacency
+syn keyword         glslLayoutQual          contained location binding
 syn keyword         glslLayoutQual          contained max_vertices origin_upper_left pixel_center_integer point_mode points quads
 syn keyword         glslLayoutQual          contained stream triangle_strip triangles triangles_adjacency vertices
 syn keyword         glslLayoutQual          contained local_size_x local_size_y local_size_z
