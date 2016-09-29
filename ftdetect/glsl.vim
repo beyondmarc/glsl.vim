@@ -3,7 +3,7 @@ if !exists('g:glsl_default_version')
 endif
 
 if !exists('g:glsl_file_extensions')
-    let g:glsl_file_extensions = '*.glsl,*.vsh,*.fsh'
+    let g:glsl_file_extensions = '*.glsl,*.vsh,*.fsh,*.vert,*.tesc,*.tese,*.geom,*.frag,*.comp'
 endif
 
 func! s:set_glsl_filetype()
