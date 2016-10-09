@@ -35,6 +35,6 @@ If this variable is not set, it will default to `glsl330`.
 To set the list of file extensions for which the syntax is loaded, set the
 global variable `glsl_file_extensions` in your `.vimrc` before loading the plugin:
 
-    let g:glsl_file_extensions = '*.glsl,*.vsh,*.fsh'
+    let g:glsl_file_extensions = '*.glsl,*.vsh,*.fsh,*.vert,*.tesc,*.tese,*.geom,*.frag,*.comp'
 
-If this variable is not set, it will default to `*.glsl,*.vsh,*.fsh`.
+If this variable is not set, it will default to `*.glsl,*.vsh,*.fsh,*.vert,*.tesc,*.tese,*.geom,*.frag,*.comp`.
