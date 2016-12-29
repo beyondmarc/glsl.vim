@@ -23,20 +23,20 @@ syn cluster         glslCommentGroup    contains=glslTodo
 "catch errors caused by wrong parenthesis and brackets
 syn cluster         glslParenGroup      contains=glslParenError,glslIncluded,glslSpecial,glslCommentSkip,glslCommentString,glslComment2String,@glslCommentGroup,glslCommentStartError,glslUserCont,glslUserLabel,glslBitField,glslCommentSkip,glslOctalZero,glslCppOut,glslCppOut2,glslCppSkip,glslFormat,glslNumber,glslFloat,glslOctal,glslOctalError,glslNumbersCom,glslLayoutQual,glslMemoryQual
 if exists("c_no_bracket_error")
-  syn region        glslParen           transparent start='(' end=')' contains=ALLBUT,@glslParenGroup,glslCppParen,glslCppString
+  syn region        glslParen           transparent start='(' end=')' contains=ALLBUT,@glslParenGroup,glslCppParen,glslCppString,@Spell
   " glslCppParen: same as glslParen but ends at end-of-line; used in glslDefine
-  syn region        glslCppParen        transparent start='(' skip='\\$' excludenl end=')' end='$' contained contains=ALLBUT,@glslParenGroup,glslParen,glslString
+  syn region        glslCppParen        transparent start='(' skip='\\$' excludenl end=')' end='$' contained contains=ALLBUT,@glslParenGroup,glslParen,glslString,@Spell
   syn match         glslParenError      display ")"
   syn match         glslErrInParen      display contained "[{}]"
 else
-  syn region        glslParen           transparent start='(' end=')' contains=ALLBUT,@glslParenGroup,glslCppParen,glslErrInBracket,glslCppBracket,glslCppString
+  syn region        glslParen           transparent start='(' end=')' contains=ALLBUT,@glslParenGroup,glslCppParen,glslErrInBracket,glslCppBracket,glslCppString,@Spell
   " glslCppParen: same as glslParen but ends at end-of-line; used in glslDefine
-  syn region        glslCppParen        transparent start='(' skip='\\$' excludenl end=')' end='$' contained contains=ALLBUT,@glslParenGroup,glslErrInBracket,glslParen,glslBracket,glslString
+  syn region        glslCppParen        transparent start='(' skip='\\$' excludenl end=')' end='$' contained contains=ALLBUT,@glslParenGroup,glslErrInBracket,glslParen,glslBracket,glslString,@Spell
   syn match         glslParenError      display "[\])]"
   syn match         glslErrInParen      display contained "[\]{}]"
-  syn region        glslBracket         transparent start='\[' end=']' contains=ALLBUT,@glslParenGroup,glslErrInParen,glslCppParen,glslCppBracket,glslCppString
+  syn region        glslBracket         transparent start='\[' end=']' contains=ALLBUT,@glslParenGroup,glslErrInParen,glslCppParen,glslCppBracket,glslCppString,@Spell
   " glslCppBracket: same as glslParen but ends at end-of-line; used in glslDefine
-  syn region        glslCppBracket      transparent start='\[' skip='\\$' excludenl end=']' end='$' contained contains=ALLBUT,@glslParenGroup,glslErrInParen,glslParen,glslBracket,glslString
+  syn region        glslCppBracket      transparent start='\[' skip='\\$' excludenl end=']' end='$' contained contains=ALLBUT,@glslParenGroup,glslErrInParen,glslParen,glslBracket,glslString,@Spell
   syn match         glslErrInBracket    display contained "[);{}]"
 endif
 
@@ -71,11 +71,11 @@ if exists("c_comment_strings")
   syntax match      glslCommentSkip         contained "^\s*\*\($\|\s\+\)"
   syntax region     glslCommentString       contained start=+L\=\\\@<!"+ skip=+\\\\\|\\"+ end=+"+ end=+\*/+me=s-1 contains=glslSpecial,glslCommentSkip
   syntax region     glslComment2String      contained start=+L\=\\\@<!"+ skip=+\\\\\|\\"+ end=+"+ end="$" contains=glslSpecial
-  syntax region     glslCommentL            start="//" skip="\\$" end="$" keepend contains=@glslCommentGroup,glslComment2String,glslCharacter,glslNumbersCom,glslSpaceError
-  syntax region     glslComment             matchgroup=glslCommentStart start="/\*" matchgroup=NONE end="\*/" contains=@glslCommentGroup,glslCommentStartError,glslCommentString,glslCharacter,glslNumbersCom,glslSpaceError
+  syntax region     glslCommentL            start="//" skip="\\$" end="$" keepend contains=@glslCommentGroup,glslComment2String,glslCharacter,glslNumbersCom,glslSpaceError,@Spell
+  syntax region     glslComment             matchgroup=glslCommentStart start="/\*" matchgroup=NONE end="\*/" contains=@glslCommentGroup,glslCommentStartError,glslCommentString,glslCharacter,glslNumbersCom,glslSpaceError,@Spell
 else
-  syn region        glslCommentL            start="//" skip="\\$" end="$" keepend contains=@glslCommentGroup,glslSpaceError
-  syn region        glslComment             matchgroup=glslCommentStart start="/\*" matchgroup=NONE end="\*/" contains=@glslCommentGroup,glslCommentStartError,glslSpaceError
+  syn region        glslCommentL            start="//" skip="\\$" end="$" keepend contains=@glslCommentGroup,glslSpaceError,@Spell
+  syn region        glslComment             matchgroup=glslCommentStart start="/\*" matchgroup=NONE end="\*/" contains=@glslCommentGroup,glslCommentStartError,glslSpaceError,@Spell
 endif
 " keep a // comment separately, it terminates a preproc. conditional
 syntax match        glslCommentError        display "\*/"
@@ -88,12 +88,12 @@ syn region          glslCppOut2             contained start="0" end="^\s*#\s*\(e
 syn region          glslCppSkip             contained start="^\s*#\s*\(if\>\|ifdef\>\|ifndef\>\)" skip="\\$" end="^\s*#\s*endif\>" contains=glslSpaceError,glslCppSkip
 "syn match glslLineSkip        "\\$"
 syn cluster         glslPreProglslGroup     contains=glslPreCondit,glslIncluded,glslInclude,glslDefine,glslErrInParen,glslErrInBracket,glslUserLabel,glslSpecial,glslOctalZero,glslCppOut,glslCppOut2,glslCppSkip,glslFormat,glslNumber,glslFloat,glslOctal,glslOctalError,glslNumbersCom,glslString,glslCommentSkip,glslCommentString,glslComment2String,@glslCommentGroup,glslCommentStartError,glslParen,glslBracket,glslMulti
-syn region          glslDefine              start="^\s*#\s*\(define\|undef\)\>" skip="\\$" end="$" end="//"me=s-1 contains=ALLBUT,@glslPreProglslGroup
-syn region          glslPreProc             start="^\s*#\s*\(pragma\>\|line\>\|error\>\|version\>\|extension\>\)" skip="\\$" end="$" keepend contains=ALLBUT,@glslPreProglslGroup
+syn region          glslDefine              start="^\s*#\s*\(define\|undef\)\>" skip="\\$" end="$" end="//"me=s-1 contains=ALLBUT,@glslPreProglslGroup,@Spell
+syn region          glslPreProc             start="^\s*#\s*\(pragma\>\|line\>\|error\>\|version\>\|extension\>\)" skip="\\$" end="$" keepend contains=ALLBUT,@glslPreProglslGroup,@Spell
 
 " Highlight User Labels
 syn cluster         glslMultiGroup          contains=glslIncluded,glslSpecial,glslCommentSkip,glslCommentString,glslComment2String,@glslCommentGroup,glslCommentStartError,glslUserCont,glslUserLabel,glslBitField,glslOctalZero,glslCppOut,glslCppOut2,glslCppSkip,glslFormat,glslNumber,glslFloat,glslOctal,glslOctalError,glslNumbersCom,glslCppParen,glslCppBracket,glslCppString
-syn region          glslMulti               transparent start='?' skip='::' end=':' contains=ALLBUT,@glslMultiGroup
+syn region          glslMulti               transparent start='?' skip='::' end=':' contains=ALLBUT,@glslMultiGroup,@Spell
 " Avoid matching foo::bar() in C++ by requiring that the next char is not ':'
 syn cluster         glslLabelGroup          contains=glslUserLabel
 syn match           glslUserCont            display "^\s*\I\i*\s*:$" contains=@glslLabelGroup
