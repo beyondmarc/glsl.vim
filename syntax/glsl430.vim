@@ -170,6 +170,7 @@ syn keyword         glslType                image1DArray image2DArray
 syn keyword         glslType                image1DArrayShadow image2DArrayShadow
 syn keyword         glslType                image1DShadow image2DShadow
 syn keyword         glslType                imageBuffer iimageBuffer uimageBuffer
+syn keyword         glslType                uimage1D uimage2D uimage3D uimageCube
 
 syn keyword         glslStructure           struct
 
@@ -259,7 +260,8 @@ syn keyword         glslUnsupported         long short half fixed unsigned super
 syn keyword         glslUnsupported         namespace using
 syn keyword         glslUnsupported         sampler3DRect
 syn keyword         glslUnsupported         sizeof cast
-syn keyword         glslUnsupported         uimage1D uimage2D uimage3D uimageCube
+syn keyword         glslUnsupported         sampler3DRect
+
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
