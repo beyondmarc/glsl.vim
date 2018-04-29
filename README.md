@@ -1,5 +1,3 @@
-Cloned from https://github.com/beyondmarc/glsl.vim
-
 # glsl.vim
 
 OpenGL Shading Language (GLSL) Vim syntax highlighting.
@@ -10,7 +8,7 @@ Using the [Pathogen plugin](http://vimcasts.org/episodes/synchronizing-plugins-w
 
 * From your `~/.vim` directory:
 
-   `git submodule add https://github.com/r-uhlig/glsl.vim.git bundle/glsl.vim`
+   `git submodule add https://github.com/beyondmarc/glsl.vim.git bundle/glsl.vim`
 
 If not using the Pathogen plugin:
 
