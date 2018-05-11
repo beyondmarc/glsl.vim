@@ -8,6 +8,10 @@ endif
 
 func! s:set_glsl_filetype()
   for item in getline(1,30)
+    if item =~ "#version 460"
+      execute ':set filetype=glsl460'
+      break
+    endif
     if item =~ "#version 450"
       execute ':set filetype=glsl450'
       break
