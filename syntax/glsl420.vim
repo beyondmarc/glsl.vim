@@ -130,6 +130,8 @@ syn keyword         glslLayoutQual          contained location binding
 syn keyword         glslLayoutQual          contained max_vertices origin_upper_left pixel_center_integer point_mode points quads
 syn keyword         glslLayoutQual          contained stream triangle_strip triangles triangles_adjacency vertices
 
+syn keyword         glslMemoryQual          coherent volatile restrict readonly writeonly
+
 syn keyword         glslStatement           break continue discard return
 syn keyword         glslRepeat              while for do
 syn keyword         glslConditional         if else switch
@@ -158,6 +160,14 @@ syn keyword         glslType                samplerBuffer isamplerBuffer usample
 syn keyword         glslType                sampler2DMS isampler2DMS usampler2DMS
 syn keyword         glslType                sampler2DMSArray isampler2DMSArray usampler2DMSArray
 syn keyword         glslType                samplerCubeArray samplerCubeArrayShadow isamplerCubeArray usamplerCubeArray
+syn keyword         glslType                iimage1D iimage2D iimage3D iimageCube
+syn keyword         glslType                iimage1DArray iimage2DArray uimage1DArray uimage2DArray
+syn keyword         glslType                image1D image2D image3D imageCube
+syn keyword         glslType                image1DArray image2DArray
+syn keyword         glslType                image1DArrayShadow image2DArrayShadow
+syn keyword         glslType                image1DShadow image2DShadow
+syn keyword         glslType                imageBuffer iimageBuffer uimageBuffer
+syn keyword         glslType                uimage1D uimage2D uimage3D uimageCube
 
 syn keyword         glslStructure           struct
 
@@ -236,20 +246,12 @@ syn keyword         glslUnsupported         common partition active
 syn keyword         glslUnsupported         filter
 syn keyword         glslUnsupported         goto
 syn keyword         glslUnsupported         hvec2 hvec3 hvec4 fvec2 fvec3 fvec4
-syn keyword         glslUnsupported         iimage1D iimage2D iimage3D iimageCube
-syn keyword         glslUnsupported         iimage1DArray iimage2DArray uimage1DArray uimage2DArray
-syn keyword         glslUnsupported         image1D image2D image3D imageCube
-syn keyword         glslUnsupported         image1DArray image2DArray
-syn keyword         glslUnsupported         image1DArrayShadow image2DArrayShadow
-syn keyword         glslUnsupported         image1DShadow image2DShadow
-syn keyword         glslUnsupported         imageBuffer iimageBuffer uimageBuffer
-syn keyword         glslUnsupported         inline noinline volatile public static extern external interface
+syn keyword         glslUnsupported         inline noinline public static extern external interface
 syn keyword         glslUnsupported         input output
 syn keyword         glslUnsupported         long short half fixed unsigned superp
 syn keyword         glslUnsupported         namespace using
 syn keyword         glslUnsupported         sampler3DRect
 syn keyword         glslUnsupported         sizeof cast
-syn keyword         glslUnsupported         uimage1D uimage2D uimage3D uimageCube
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
@@ -303,6 +305,7 @@ if version >= 508 || !exists("did_glsl_syn_inits")
   HiLink glslFuncDeprec               WarningMsg
   HiLink glslLabel                    Label
   HiLink glslLayoutQual               glslFunc
+  HiLink glslMemoryQual               glslFunc
   HiLink glslRepeat                   Repeat
   HiLink glslState                    glslType
   HiLink glslStateDeprec              WarningMsg

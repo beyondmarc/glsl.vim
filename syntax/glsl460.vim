@@ -1,13 +1,10 @@
 " Vim syntax file the OpenGL Shading Language
-" Language:     GLSL 430
+" Language:     GLSL 460
 " Author:       Marc Costa <beyond.marc@gmail.com>
-" Date:         November 17, 2012
+" Date:         August 21, 2014
 " File Types:   .glsl
 " Version:      1
-" Notes:        Adapted from glsl400.vim - Kamil Patelczyk <patelczyk@gmail.com>
-"               Adapted from c.vim - Bram Moolenaar <bram.vim.org>
-"               Adapted from cg.vim - Kevin Bjorke <kbjorke@nvidia.com>
-"               Adapted from glsl.vim - Nathan Cournia <nathan@cournia.com>
+" Notes:        Adapted from glsl450.vim - Ralf Uhlig
 
 " For version 5.x: Clear all syntax items
 " For version 6.x: Quit when a syntax file was already loaded
@@ -119,6 +116,7 @@ syn keyword         glslStorageClass        lowp mediump highp precision
 syn keyword         glslStorageClass        invariant
 syn keyword         glslStorageClass        subroutine
 syn keyword         glslStorageClass        buffer
+syn keyword         glslStorageClass        coherent
 
 syn match           glslLayout              /\<layout\s*(\_.\{-})/hs=s,he=s+6 contains=glslLayoutQual,glslNumber
 
@@ -182,8 +180,8 @@ syn match           glslSwizzle             /\.[stpq]\{1,4\}\>/
 " Builtin variables
 syn keyword         glslState               gl_FragCoord gl_FrontFacing gl_PointCoord gl_SampleID gl_SamplePosition gl_FragDepth
 syn keyword         glslState               gl_VertexID gl_InstanceID gl_Position gl_PointSize
-syn keyword         glslState               gl_PrimitiveIDIn gl_InvocationID gl_PrimitiveID gl_Layer gl_ViewportIndex
-syn keyword         glslState               gl_ClipDistance gl_in gl_SampleMask
+syn keyword         glslState               gl_PrimitiveIDIn gl_InvocationID gl_PrimitiveID gl_Layer gl_ViewportIndex gl_HelperInvocation
+syn keyword         glslState               gl_ClipDistance gl_CullDistance gl_in gl_SampleMask
 syn keyword         glslState               gl_NumWorkGroups gl_WorkGroupSize gl_WorkGroupID gl_LocalInvocationID gl_GlobalInvocationID gl_LocalInvocationIndex
 
 syn keyword         glslStateDeprec         gl_FragColor gl_FragData gl_TexCoord
@@ -208,13 +206,15 @@ syn keyword         glslUniformDeprec       gl_TextureMatrixTranspose gl_Texture
 syn keyword         glslConstant            gl_MaxVertexAttribs gl_MaxVertexUniformComponents gl_MaxVertexOutputComponents gl_MaxGeometryInputComponents
 syn keyword         glslConstant            gl_MaxGeometryOutputComponents gl_MaxFragmentInputComponents gl_MaxVertexTextureImageUnits
 syn keyword         glslConstant            gl_MaxCombinedTextureImageUnits gl_MaxTextureImageUnits gl_MaxFragmentUniformComponents gl_MaxDrawBuffers
-syn keyword         glslConstant            gl_MaxClipDistances gl_MaxGeometryTextureImageUnits gl_MaxGeometryOutputVertices gl_MaxGeometryTotalOutputComponents
+syn keyword         glslConstant            gl_MaxClipDistances gl_MaxCullDistances gl_MaxCombinedClipAndCullDistances
+syn keyword         glslConstant            gl_MaxGeometryTextureImageUnits gl_MaxGeometryOutputVertices gl_MaxGeometryTotalOutputComponents
 syn keyword         glslConstant            gl_MaxGeometryUniformComponents gl_MaxGeometryVaryingComponents gl_MaxTessControlInputComponents gl_MaxTessControlOutputComponents
 syn keyword         glslConstant            gl_MaxTessControlTextureImageUnits gl_MaxTessControlUniformComponents gl_MaxTessControlTotalOutputComponents
 syn keyword         glslConstant            gl_MaxTessEvaluationInputComponents gl_MaxTessEvaluationOutputComponents gl_MaxTessEvaluationTextureImageUnits
 syn keyword         glslConstant            gl_MaxTessEvaluationUniformComponents gl_MaxTessPatchComponents gl_MaxPatchVertices gl_MaxTessGenLevel
 syn keyword         glslConstant            gl_MaxComputeWorkGroupCount gl_MaxComputeWorkGroupSize gl_MaxComputeUniformComponents gl_MaxComputeTextureImageUnits
 syn keyword         glslConstant            gl_MaxComputeImageUniforms gl_MaxComputeAtomicCounters gl_MaxComputeAtomicCounterBuffers
+syn keyword         glslConstant            gl_MaxSamples gl_MaxVertexImageUniforms gl_MaxFragmentImageUniforms gl_MaxComputeImageUniforms gl_MaxCombinedImageUniforms gl_MaxCombinedShaderOutputResources
 
 syn keyword         glslConstantDeprec      gl_MaxVaryingFloats gl_MaxVaryingComponents
 syn keyword         glslConstantDeprec      gl_MaxTextureUnits gl_MaxTextureCoords gl_MaxClipPlanes
@@ -232,7 +232,8 @@ syn keyword         glslFunc                not notEqual outerProduct reflect re
 syn keyword         glslFunc                textureSize textureQueryLod texture textureProj textureLod textureOffset texelFetch texelFetchOffset
 syn keyword         glslFunc                textureProjOffset textureLodOffset textureProjLod textureProjLodOffset textureGrad textureGradOffset
 syn keyword         glslFunc                textureProjGrad textureProjGradOffset textureGather textureGatherOffset textureGatherOffsets textureQueryLevels
-syn keyword         glslFunc                dFdx dFdy fwidth interpolateAtCentroid interpolateAtOffset interpolateAtSample
+syn keyword         glslFunc                textureSamples imageSamples
+syn keyword         glslFunc                dFdx dFdy fwidth dFdxCoarse dFdyCoarse fwidthCoarse dFdxFine dFdyFine fwidthFine interpolateAtCentroid interpolateAtOffset interpolateAtSample
 syn keyword         glslFunc                noise1 noise2 noise3 noise4
 syn keyword         glslFunc                EmitStreamVertex EndStreamPrimitive EmitVertex EndPrimitive barrier
 syn keyword         glslFunc                imageLoad imageStore imageSize
@@ -254,14 +255,12 @@ syn keyword         glslUnsupported         common partition active
 syn keyword         glslUnsupported         filter
 syn keyword         glslUnsupported         goto
 syn keyword         glslUnsupported         hvec2 hvec3 hvec4 fvec2 fvec3 fvec4
-syn keyword         glslUnsupported         inline noinline public static extern external interface
+syn keyword         glslUnsupported         inline noinline volatile public static extern external interface
 syn keyword         glslUnsupported         input output
 syn keyword         glslUnsupported         long short half fixed unsigned superp
 syn keyword         glslUnsupported         namespace using
 syn keyword         glslUnsupported         sampler3DRect
 syn keyword         glslUnsupported         sizeof cast
-syn keyword         glslUnsupported         sampler3DRect
-
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
@@ -335,4 +334,4 @@ if version >= 508 || !exists("did_glsl_syn_inits")
   delcommand HiLink
 endif
 
-let b:current_syntax = "glsl430"
+let b:current_syntax = "glsl460"
